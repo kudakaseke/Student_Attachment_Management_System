@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-label="Midlands State University">
+  <rect width="760" height="220" fill="#ffffff"/>
+  <g transform="translate(18,20)">
+    <path d="M60 4h122v122c0 25-18 49-61 66-43-17-61-41-61-66z" fill="#f2c649" stroke="#7c6a16" stroke-width="4"/>
+    <rect x="69" y="13" width="104" height="104" fill="#9fd6f4" stroke="#5f7f93" stroke-width="3"/>
+    <path d="M33 125h176l-13 23-75 21-75-21z" fill="#e3c149" stroke="#7c6a16" stroke-width="3"/>
+    <text x="121" y="155" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#2c2c2c">KNOWLEDGE • SERVICE</text>
+    <path d="M107 31l18 13-7 21h-22l-7-21z" fill="#f5de5a" stroke="#8d7422" stroke-width="2"/>
+    <path d="M124 61l18 14-16 20h-24l-8-20z" fill="#6fb0de"/>
+  </g>
+  <text x="238" y="98" font-family="Georgia, 'Times New Roman', serif" font-size="72" font-weight="700" fill="#111">MIDLANDS</text>
+  <text x="240" y="156" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700" fill="#111">STATE UNIVERSITY</text>
+</svg>

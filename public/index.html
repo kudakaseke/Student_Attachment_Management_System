@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAMS - Midlands State University</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+</head>
+<body>
+  <header id="topbar" class="topbar hidden">
+    <div class="topbar-brand">
+      <img src="./assets/logo%201.png" alt="Midlands State University Logo" class="system-logo topbar-logo" />
+      <div>
+        <h1>SAMS</h1>
+        <p>Student Attachment Management System | Midlands State University</p>
+      </div>
+    </div>
+    <button id="logoutBtn" class="btn ghost hidden">Logout</button>
+  </header>
+
+  <main class="container">
+    <section id="authCard" class="auth-screen">
+      <div class="illustration left-illustration" aria-hidden="true"></div>
+      <div class="auth-center">
+        <div class="msu-brand">
+          <img src="./assets/logo%202%20white.png" alt="SAMS Logo" class="system-logo auth-logo" />
+          <div class="brand-text">
+            <strong>MIDLANDS</strong>
+            <span>STATE UNIVERSITY</span>
+          </div>
+        </div>
+        <article class="auth-panel">
+          <h2 id="authTitle">Sign In</h2>
+          <form id="loginForm" class="auth-form">
+            <label>Log in as
+              <select id="role" required>
+                <option value="student">Student</option>
+                <option value="lecturer">Attachment Lecturer</option>
+                <option value="supervisor">Company Supervisor</option>
+                <option value="admin">System Admin</option>
+              </select>
+            </label>
+            <label id="identifierLabel">Registration Number
+              <input id="identifier" placeholder="Registration Number" required />
+            </label>
+            <label id="passwordWrap">Password
+              <input id="password" type="password" placeholder="Password" />
+            </label>
+            <button class="btn auth-submit" type="submit">Sign In</button>
+          </form>
+
+          <form id="createForm" class="auth-form hidden">
+            <label>Create account as
+              <select id="createRole" required>
+                <option value="student">Student</option>
+                <option value="lecturer">Attachment Lecturer</option>
+                <option value="supervisor">Company Supervisor</option>
+                <option value="admin">System Admin</option>
+              </select>
+            </label>
+            <label>First Name
+              <input id="createFirstName" required />
+            </label>
+            <label>Last Name
+              <input id="createLastName" required />
+            </label>
+            <label id="createIdentifierLabel">Registration Number
+              <input id="createIdentifier" placeholder="r218270v" required />
+            </label>
+            <label id="createProgramWrap" class="hidden">Programme
+              <select id="createProgram">
+                <option value="">Select Programme</option>
+              </select>
+            </label>
+            <label id="createPasswordWrap">Password
+              <input id="createPassword" type="password" placeholder="Create password" />
+            </label>
+            <button class="btn auth-submit" type="submit">Create Account</button>
+            <button id="showLoginFromCreate" class="btn link-btn" type="button">Back To Sign In</button>
+          </form>
+
+          <form id="forgotForm" class="auth-form hidden">
+            <label>Reset for role
+              <select id="forgotRole" required>
+                <option value="lecturer">Attachment Lecturer</option>
+                <option value="supervisor">Company Supervisor</option>
+                <option value="admin">System Admin</option>
+                <option value="student">Student</option>
+              </select>
+            </label>
+            <label id="forgotIdentifierLabel">Email
+              <input id="forgotIdentifier" type="email" placeholder="name@msu.ac.zw" required />
+            </label>
+            <label id="forgotPasswordWrap">New Password
+              <input id="forgotPassword" type="password" placeholder="New password" required />
+            </label>
+            <button class="btn auth-submit" type="submit">Reset Password</button>
+            <button id="showLoginFromForgot" class="btn link-btn" type="button">Back To Sign In</button>
+          </form>
+
+          <div class="auth-footer-links">
+            <button id="showCreateBtn" type="button">Create An Account</button>
+            <button id="showForgotBtn" type="button">Forgot Password?</button>
+          </div>
+        </article>
+        <p class="copyright">Midlands State University &copy; 2026. All Rights Reserved.</p>
+      </div>
+      <div class="illustration right-illustration" aria-hidden="true"></div>
+    </section>
+
+    <section id="dashboard" class="hidden"></section>
+  </main>
+
+  <div id="successModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+    <div class="modal-card">
+      <h3 id="successModalTitle">Success</h3>
+      <p id="successModalMsg">Account successfully created.</p>
+      <button id="closeSuccessModal" class="btn" type="button">OK</button>
+    </div>
+  </div>
+
+  <template id="studentTpl">
+    <article class="card">
+      <h3>Student Profile</h3>
+      <div id="studentProfile"></div>
+    </article>
+    <div class="grid">
+      <article class="card">
+        <h3>Submit Placement</h3>
+        <form id="placementForm" class="form-grid">
+          <input name="company_name" placeholder="Company Name" required />
+          <input name="company_address" placeholder="Company Address" required />
+          <input name="department" list="companyDepartmentOptions" placeholder="Department" required />
+          <datalist id="companyDepartmentOptions">
+            <option value="Accounts"></option>
+            <option value="Finance"></option>
+            <option value="Information Technology"></option>
+            <option value="Data Analytics"></option>
+            <option value="Human Resources"></option>
+            <option value="Procurement"></option>
+            <option value="Engineering"></option>
+            <option value="Operations"></option>
+            <option value="Administration"></option>
+            <option value="Marketing"></option>
+            <option value="Sales"></option>
+            <option value="Customer Support"></option>
+            <option value="Logistics"></option>
+            <option value="Legal"></option>
+            <option value="Quality Assurance"></option>
+          </datalist>
+          <input name="city" placeholder="City" required />
+          <input name="supervisor_name" placeholder="Supervisor Name" required />
+          <input name="supervisor_email" placeholder="Supervisor Email" type="email" required />
+          <input name="supervisor_phone" placeholder="Supervisor Phone" required />
+          <label>Start Date <input name="start_date" type="date" required /></label>
+          <label>End Date <input name="end_date" type="date" required /></label>
+          <textarea name="notes" placeholder="Extra notes"></textarea>
+          <button class="btn" type="submit">Submit Placement</button>
+        </form>
+      </article>
+      <article class="card">
+        <h3>Active Lecturer</h3>
+        <form id="activeLecturerForm" class="form-grid">
+          <select name="lecturer_id" id="activeLecturerSelect" required>
+            <option value="">Select Active Lecturer</option>
+          </select>
+          <button class="btn" type="submit">Save Active Lecturer</button>
+        </form>
+        <h3>Upload / Resubmit Document</h3>
+        <form id="docForm" class="form-grid">
+          <label>Document ID (Auto-generated)
+            <input id="docIdPreview" type="text" value="Auto-generated on upload" readonly />
+          </label>
+          <select name="document_type" required>
+            <option value="">Document Type</option>
+            <option value="preliminary_report">Preliminary Report</option>
+            <option value="final_report">Final Report</option>
+            <option value="log_book">Log Book</option>
+            <option value="system_documentation">System Documentation</option>
+          </select>
+          <input name="file" type="file" required />
+          <button class="btn" type="submit">Upload / Resubmit</button>
+        </form>
+      </article>
+    </div>
+    <article class="card">
+      <h3>My Placement Status & Feedback</h3>
+      <div id="studentData"></div>
+    </article>
+  </template>
+
+  <template id="lecturerTpl">
+    <article class="card">
+      <h3>Lecturer Profile</h3>
+      <div id="lecturerProfile"></div>
+    </article>
+    <div class="grid">
+      <article class="card">
+        <h3>Approve / Reject Placement</h3>
+        <form id="reviewForm" class="form-grid">
+          <input name="reg_number" type="text" placeholder="Student Reg Number (e.g. r218270v)" required />
+          <select name="status" required>
+            <option value="approved">Approve</option>
+            <option value="rejected">Reject</option>
+          </select>
+          <textarea name="comment" placeholder="Comment"></textarea>
+          <button class="btn" type="submit">Update</button>
+        </form>
+      </article>
+      <article class="card">
+        <h3>Record Visit Report</h3>
+        <form id="visitForm" class="form-grid">
+          <input name="reg_number" type="text" placeholder="Student Reg Number (e.g. r218270v)" required />
+          <label>Visit Date <input name="visit_date" type="date" required /></label>
+          <textarea name="summary" placeholder="Visit summary" required></textarea>
+          <button class="btn" type="submit">Save Visit</button>
+        </form>
+      </article>
+      <article class="card">
+        <h3>Grade Document</h3>
+        <form id="docGradeForm" class="form-grid">
+          <input name="document_id" type="number" min="1" placeholder="Document ID" required />
+          <input name="score" type="number" min="0" max="100" placeholder="Score (0-100)" required />
+          <textarea name="comment" placeholder="Grade comment (optional)"></textarea>
+          <button class="btn" type="submit">Save Grade</button>
+        </form>
+      </article>
+      <article class="card">
+        <h3>Create Announcement</h3>
+        <form id="announcementForm" class="form-grid">
+          <input name="title" placeholder="Announcement title" required />
+          <textarea name="message" placeholder="Announcement details / task instructions" required></textarea>
+          <label>Due Date (optional) <input name="due_date" type="date" /></label>
+          <button class="btn" type="submit">Post Announcement</button>
+        </form>
+      </article>
+    </div>
+    <article class="card">
+      <h3>Students on Attachment</h3>
+      <div id="lecturerData"></div>
+    </article>
+    <article class="card">
+      <h3>My Announcements</h3>
+      <div id="lecturerAnnouncements"></div>
+    </article>
+  </template>
+
+  <template id="supervisorTpl">
+    <div class="grid">
+      <article class="card">
+        <h3>Confirm Placement</h3>
+        <form id="confirmForm" class="form-grid">
+          <input name="reg_number" type="text" placeholder="Student Reg Number (e.g. r218270v)" required />
+          <button class="btn" type="submit">Confirm</button>
+        </form>
+      </article>
+      <article class="card">
+        <h3>Submit Feedback</h3>
+        <form id="feedbackForm" class="form-grid">
+          <input name="reg_number" type="text" placeholder="Student Reg Number (e.g. r218270v)" required />
+          <input name="score" type="number" min="0" max="100" placeholder="Score (0-100)" required />
+          <textarea name="comment" placeholder="Performance feedback" required></textarea>
+          <button class="btn" type="submit">Send Feedback</button>
+        </form>
+      </article>
+    </div>
+    <article class="card">
+      <h3>Assigned Students</h3>
+      <div id="supervisorData"></div>
+    </article>
+  </template>
+
+  <template id="adminTpl">
+    <div class="grid">
+      <article class="card">
+        <h3>Create User</h3>
+        <form id="userForm" class="form-grid">
+          <select name="role" required>
+            <option value="student">Student</option>
+            <option value="lecturer">Lecturer</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="admin">System Admin</option>
+          </select>
+          <input name="first_name" placeholder="First Name" required />
+          <input name="last_name" placeholder="Last Name" required />
+          <input name="reg_number" placeholder="Student Reg Number (if student)" />
+          <input name="email" type="email" placeholder="Email (non-student)" />
+          <input name="password" type="password" placeholder="Password (required)" required />
+          <input name="department_id" type="number" min="0" placeholder="Department ID (optional)" />
+          <input name="company_id" type="number" min="0" placeholder="Company ID (optional)" />
+          <button class="btn" type="submit">Create</button>
+        </form>
+      </article>
+      <article class="card">
+        <h3>Add Student Placement</h3>
+        <form id="adminPlacementForm" class="form-grid">
+          <input name="reg_number" type="text" placeholder="Student Reg Number (e.g. r218270v)" required />
+          <input name="company_name" placeholder="Company Name" required />
+          <input name="company_address" placeholder="Company Address" required />
+          <input name="department" placeholder="Department" required />
+          <input name="city" placeholder="City" required />
+          <input name="supervisor_name" placeholder="Supervisor Name" required />
+          <input name="supervisor_email" type="email" placeholder="Supervisor Email" required />
+          <input name="supervisor_phone" placeholder="Supervisor Phone" required />
+          <label>Start Date <input name="start_date" type="date" required /></label>
+          <label>End Date <input name="end_date" type="date" required /></label>
+          <input name="lecturer_id" type="number" min="0" placeholder="Lecturer ID (optional)" />
+          <textarea name="notes" placeholder="Notes (optional)"></textarea>
+          <button class="btn" type="submit">Add Placement</button>
+        </form>
+      </article>
+    </div>
+    <article class="card">
+      <h3>Admin Dashboard & Reports</h3>
+      <div class="report-actions">
+        <button class="btn secondary" data-export="students_on_attachment">Export Students on Attachment</button>
+        <button class="btn secondary" data-export="pending_approvals">Export Pending Approvals</button>
+      </div>
+      <div id="adminData"></div>
+    </article>
+  </template>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script src="./app.js"></script>
+</body>
+</html>

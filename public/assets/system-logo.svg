@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SAMS logo placeholder">
+  <rect width="512" height="512" fill="#ffffff"/>
+  <rect x="18" y="18" width="476" height="476" fill="#ffffff" stroke="#111" stroke-width="16"/>
+  <g fill="#111">
+    <rect x="52" y="52" width="92" height="92" rx="12"/>
+    <rect x="368" y="52" width="92" height="92" rx="12"/>
+    <rect x="52" y="368" width="92" height="92" rx="12"/>
+    <circle cx="198" cy="98" r="8"/><circle cx="226" cy="98" r="8"/><circle cx="254" cy="98" r="8"/><circle cx="282" cy="98" r="8"/>
+    <circle cx="198" cy="126" r="8"/><circle cx="254" cy="126" r="8"/><circle cx="310" cy="126" r="8"/>
+    <circle cx="170" cy="154" r="8"/><circle cx="198" cy="154" r="8"/><circle cx="226" cy="154" r="8"/><circle cx="282" cy="154" r="8"/><circle cx="338" cy="154" r="8"/>
+    <circle cx="170" cy="182" r="8"/><circle cx="226" cy="182" r="8"/><circle cx="254" cy="182" r="8"/><circle cx="282" cy="182" r="8"/><circle cx="338" cy="182" r="8"/>
+    <circle cx="142" cy="210" r="8"/><circle cx="170" cy="210" r="8"/><circle cx="198" cy="210" r="8"/><circle cx="254" cy="210" r="8"/><circle cx="282" cy="210" r="8"/><circle cx="310" cy="210" r="8"/><circle cx="338" cy="210" r="8"/>
+    <circle cx="114" cy="238" r="8"/><circle cx="142" cy="238" r="8"/><circle cx="170" cy="238" r="8"/><circle cx="226" cy="238" r="8"/><circle cx="254" cy="238" r="8"/><circle cx="282" cy="238" r="8"/><circle cx="338" cy="238" r="8"/><circle cx="366" cy="238" r="8"/>
+    <circle cx="114" cy="266" r="8"/><circle cx="170" cy="266" r="8"/><circle cx="198" cy="266" r="8"/><circle cx="226" cy="266" r="8"/><circle cx="282" cy="266" r="8"/><circle cx="310" cy="266" r="8"/><circle cx="366" cy="266" r="8"/>
+    <circle cx="86" cy="294" r="8"/><circle cx="114" cy="294" r="8"/><circle cx="142" cy="294" r="8"/><circle cx="170" cy="294" r="8"/><circle cx="198" cy="294" r="8"/><circle cx="254" cy="294" r="8"/><circle cx="282" cy="294" r="8"/><circle cx="338" cy="294" r="8"/><circle cx="366" cy="294" r="8"/><circle cx="394" cy="294" r="8"/>
+    <circle cx="86" cy="322" r="8"/><circle cx="142" cy="322" r="8"/><circle cx="198" cy="322" r="8"/><circle cx="226" cy="322" r="8"/><circle cx="254" cy="322" r="8"/><circle cx="310" cy="322" r="8"/><circle cx="338" cy="322" r="8"/><circle cx="394" cy="322" r="8"/>
+    <circle cx="114" cy="350" r="8"/><circle cx="142" cy="350" r="8"/><circle cx="198" cy="350" r="8"/><circle cx="226" cy="350" r="8"/><circle cx="282" cy="350" r="8"/><circle cx="310" cy="350" r="8"/><circle cx="338" cy="350" r="8"/><circle cx="366" cy="350" r="8"/>
+    <circle cx="170" cy="378" r="8"/><circle cx="198" cy="378" r="8"/><circle cx="226" cy="378" r="8"/><circle cx="254" cy="378" r="8"/><circle cx="282" cy="378" r="8"/><circle cx="310" cy="378" r="8"/><circle cx="366" cy="378" r="8"/>
+    <path d="M231 214h40c8 0 14 6 14 14v16h12c8 0 14 6 14 14s-6 14-14 14h-26l-18 18h-22v18h22v18h-28c-8 0-14-6-14-14v-34l-14-14c-5-5-5-14 0-20l14-14v-14c0-8 6-14 14-14z"/>
+  </g>
+</svg>
